@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Language Ai V5</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <h1>Language Ai</h1>
+    <p>Your AI-powered language learning companion</p>
+  </header>
+
+  <main id="app">
+    <!-- Lesson container -->
+    <section id="lesson-container">
+      <div id="lesson-content"></div>
+      <div id="lesson-controls">
+        <button id="btn-next">Next</button>
+        <button id="btn-prev">Back</button>
+      </div>
+    </section>
+
+    <!-- Chat / AI response panel -->
+    <section id="chat-panel">
+      <div id="chat-messages"></div>
+      <form id="chat-form">
+        <input type="text" id="chat-input" placeholder="Ask a question..." autocomplete="off" />
+        <button type="submit">Send</button>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <p>Language Ai V5 &mdash; Firebase Edition</p>
+  </footer>
+
+  <!-- Service Worker Registration -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('./sw.js').catch(console.error);
+    }
+  </script>
+
+  <script type="module" src="firebase-backend.js"></script>
+  <script type="module" src="app.js"></script>
+</body>
+</html>

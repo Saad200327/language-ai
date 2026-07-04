@@ -1,0 +1,24 @@
+// Firestore Security Rules for Language Ai V5
+// Paste these into Firebase Console > Firestore > Rules
+
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Allow authenticated (including anonymous) users to read/write chat logs
+    match /chat_logs/{logId} {
+      allow read, write: if request.auth != null;
+    }
+
+    // Lessons are public read, admin-only write
+    match /lessons/{lessonId} {
+      allow read: if true;
+      allow write: if request.auth != null && request.auth.token.admin == true;
+    }
+
+    // Default deny all other paths
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
